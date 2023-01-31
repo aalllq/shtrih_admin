@@ -2,17 +2,17 @@
 
 import sys,os
 from PySide6 import QtWidgets
-import lib_api_pyside 
-import modules.logger
-import logging,aiologger
-logger=modules.logger.get_app_logger(__name__)
+
+import modules.logger,modules.gui
+logger=modules.logger.get_logger(__name__)
 # simple pyside6app
-class lib_api_pyside_App(QtWidgets.QMainWindow, lib_api_pyside.Ui_MainWindow):
+class Ui_MainWindow(QtWidgets.QMainWindow, modules.gui.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)  
-        self.btn_all_device_info.clicked.connect(self.btn_all_info)
-        self.ALL_textEdit.append("ALL")
+        self.pushButton_1.clicked.connect(self.btn_all_info)
+        print(dir(self.plainTextEdit))
+        self.plainTextEdit.appendPlainText("ALL")
         #self.logTextBox.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
         #logging.getLogger().addHandler(logTextBox)
         #logging.g
@@ -20,7 +20,8 @@ class lib_api_pyside_App(QtWidgets.QMainWindow, lib_api_pyside.Ui_MainWindow):
     def btn_all_info(self):
         #data_writter("all_device","to_excel")
         print(1)
-        logger.info("Программа завершила работуddd")
+        for i in range(99999):
+            logger.info("Программа завершила работуddd")
     #logging to self.All_plainTextEdit
     
     
@@ -50,7 +51,7 @@ class lib_api_pyside_App(QtWidgets.QMainWindow, lib_api_pyside.Ui_MainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  
-    window = lib_api_pyside_App()  #
+    window = Ui_MainWindow()  #
     window.show()  
     app.exec()       
 
