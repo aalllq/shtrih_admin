@@ -3,8 +3,9 @@
 import sys,os
 from PySide6 import QtWidgets
 import lib_api_pyside 
-from modules import *
-import logging
+import modules.logger
+import logging,aiologger
+logger=modules.logger.get_app_logger(__name__)
 # simple pyside6app
 class lib_api_pyside_App(QtWidgets.QMainWindow, lib_api_pyside.Ui_MainWindow):
     def __init__(self):
@@ -12,12 +13,14 @@ class lib_api_pyside_App(QtWidgets.QMainWindow, lib_api_pyside.Ui_MainWindow):
         self.setupUi(self)  
         self.btn_all_device_info.clicked.connect(self.btn_all_info)
         self.ALL_textEdit.append("ALL")
-        self.logTextBox.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+        #self.logTextBox.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
         #logging.getLogger().addHandler(logTextBox)
         #logging.g
    
     def btn_all_info(self):
-        data_writter("all_device","to_excel")
+        #data_writter("all_device","to_excel")
+        print(1)
+        logger.info("Программа завершила работуddd")
     #logging to self.All_plainTextEdit
     
     
