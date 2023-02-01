@@ -2,12 +2,12 @@
 
 import sys,os
 from PySide6 import QtWidgets
-import test1
-import modules.logger,modules.gui
-from modules.logger import logger
+import modules.gui
+from modules.logger import logger,GuiLogger
 
-# simple pyside6app
-class Ui_MainWindow(QtWidgets.QMainWindow, modules.gui.Ui_MainWindow):
+
+
+class main_app(QtWidgets.QMainWindow, modules.gui.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)  
@@ -23,20 +23,15 @@ class Ui_MainWindow(QtWidgets.QMainWindow, modules.gui.Ui_MainWindow):
         #data_writter("all_device","to_excel
         for i in range(1):
             logger.info("Программа завершила работуddd")
-            test1.prl("Программа завершила работуprl")
-            
 
-    
 
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  
-    window = Ui_MainWindow()  #
+    window = main_app()  #
     window.show()  
     app.exec()       
 
 if __name__ == '__main__':  # Если мы запускаем файл напрямую, а не импортируем 
     main()  # то запускаем функцию main()
-
-
 
