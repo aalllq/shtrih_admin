@@ -51,7 +51,7 @@ async def run(urls,method,**kwargs):
         #except (Exception, socket.error, asyncio.IncompleteReadError, asyncio.exceptions.TimeoutError) as e:
         except Exception as e:
             logger.exception(f"error in async_send.run {e}")
-
+            return(False)
        
 def async_send(urls,method,**kwargs):
     loop = asyncio.get_event_loop()
@@ -66,9 +66,10 @@ def sync_send(urls,method,**kwargs):
         return list of tuples (status_code,response,url)
         use session to keep alive connection and request.request to send request
     '''
+    result=[]
     try:
         with requests.Session() as session:
-            result=[]
+            
             for url in urls:
                 with session.request(method,url,data=kwargs["data"],headers=kwargs["header"]) as response:
                     #logger.debug(f"{url,response.status_code}")
@@ -86,5 +87,4 @@ def sync_send(urls,method,**kwargs):
             return(result)
     except Exception as e:
         logger.exception("error in sync_send")
-        return(999,"err", url)
-    
+        return(False)
