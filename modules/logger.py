@@ -31,10 +31,10 @@ def get_logger(name):
     return logger
 
 #make gui logger handler
-logger=get_logger("main_logger")
+
 class GuiLogger(logging.Handler):
     def emit(self, record):
         self.edit.appendPlainText(self.format(record))  # implementation of append_line omitted
 
-
+logger=get_logger("main_logger")
 # Path: modules/gui.py
