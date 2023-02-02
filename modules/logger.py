@@ -1,12 +1,15 @@
 # Path: modules/logger.py
 import logging,arrow
 from logging.handlers import RotatingFileHandler
+from modules import files_worker
+
 start_time=arrow.now().format("YY-MM-DD")
 def get_logger(name):
+    
     """получает __name__  возвращает logger"""
+    files_worker.make_dir(["log"])
     log_file_name=f"log/{start_time}.log"
     logger= logging.getLogger(name)
-    
     #formatter
     _log_format = f"%(asctime)s - [%(levelname)s] - %(name)s - (%(filename)s).%(funcName)s(%(lineno)d) - %(message)s"
     formatter = logging.Formatter(_log_format)
@@ -36,5 +39,5 @@ class GuiLogger(logging.Handler):
     def emit(self, record):
         self.edit.appendPlainText(self.format(record))  # implementation of append_line omitted
 
-logger=get_logger("main_logger")
+
 # Path: modules/gui.py

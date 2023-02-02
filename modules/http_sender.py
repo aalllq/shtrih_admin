@@ -1,6 +1,6 @@
 
 from modules import logger
-import aiohttp,asyncio,requests
+import asyncio,requests
 from aiohttp import ClientSession,ClientTimeout,TCPConnector
 logger = logger.get_logger(__name__)
 
